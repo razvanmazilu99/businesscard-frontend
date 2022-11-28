@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { SketchPicker } from 'react-color';
 
 const validate = (email, firstName, lastName, phoneNumber, title) => {
     const errors = []
@@ -29,9 +30,9 @@ function RegisterCard() {
     const [lastName, setLastName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [address, setAddress] = useState("");
-    const [color, setColor] = useState("");
     const [title, setTitle] = useState("");
     const [message, setMessage] = useState("")
+    const [color, setColor] = useState("#ba68c8");
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -98,7 +99,14 @@ function RegisterCard() {
                 </label>
                 <label>
                     <p>Color</p>
-                    <input type="text" name="color" value={color} onChange={(e) => setColor(e.target.value)} />
+                    <div className="sketchpicker">
+                        <SketchPicker
+                            color={color}
+                            onChange={(color) => {
+                                setColor(color.hex);
+                            }}
+                        />
+                    </div>
                 </label>
                 <label>
                     <p>Title</p>
