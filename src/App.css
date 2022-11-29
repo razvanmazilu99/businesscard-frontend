@@ -5,3 +5,10 @@
 .wrapper fieldset {
   margin: 20px 0;
 }
+
+.cardBox {
+  width: 550px;
+  height: 300px;
+  background-color: aqua;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
+}

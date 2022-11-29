@@ -14,7 +14,7 @@ const validate = (email, firstName, lastName, phoneNumber, title) => {
     }
 
     if (!/^(\+45)?[0-9]{8}$/i.test(phoneNumber)) {
-        errors.push('Phone number can only contain 8 digits');
+        errors.push('Phone number must contain 8 digits');
     }
 
     if (!/^[^0-9]+$/i.test(title)) {
@@ -29,10 +29,14 @@ function RegisterCard() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [address, setAddress] = useState("");
     const [title, setTitle] = useState("");
     const [message, setMessage] = useState("")
     const [color, setColor] = useState("#ba68c8");
+
+    const [street, setStreet] = useState("");
+    const [number, setNumber] = useState("");
+    const [city, setCity] = useState("");
+    const [code, setCode] = useState("");
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -42,6 +46,8 @@ function RegisterCard() {
             setMessage(errors);
             return;
         }
+
+        const address = street + " " + number + " " + city + " " + code;
 
         try {
             let res = await axios.post(
@@ -62,7 +68,10 @@ function RegisterCard() {
                 setFirstName('');
                 setLastName('');
                 setPhoneNumber('');
-                setAddress('');
+                setStreet('');
+                setNumber('');
+                setCity('');
+                setCode('');
                 setColor('');
                 setTitle('');
                 setMessage('Card created successfully');
@@ -95,7 +104,10 @@ function RegisterCard() {
                 </label>
                 <label>
                     <p>Address</p>
-                    <input type="text" name="address" value={address} placeholder="Str. No. City Code" onChange={(e) => setAddress(e.target.value)} required />
+                    <input type="text" name="street" value={street} placeholder="Street" onChange={(e) => setStreet(e.target.value)} required />
+                    <input type="text" name="number" value={number} placeholder="Number" onChange={(e) => setNumber(e.target.value)} required />
+                    <input type="text" name="city" value={city} placeholder="City" onChange={(e) => setCity(e.target.value)} required />
+                    <input type="text" name="code" value={code} placeholder="Code" onChange={(e) => setCode(e.target.value)} required />
                 </label>
                 <label>
                     <p>Color</p>

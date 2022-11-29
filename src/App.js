@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import GetCards from './components/GetCards';
 import RegisterCard from './components/RegisterCard';
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className="wrapper">
       <h1>Business Card</h1>
       <RegisterCard />
+      <GetCards />
     </div>
   );
 }
