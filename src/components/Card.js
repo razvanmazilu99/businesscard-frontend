@@ -1,4 +1,4 @@
-import DeleteCard from "./DeleteCard";
+import { deleteCard } from "../services/cards";
 
 export default function Card(cards) {
     return (
@@ -9,7 +9,7 @@ export default function Card(cards) {
                     <h4>{card.title}</h4>
                     <h4>{card.email}</h4>
                     <h4>{card.phoneNumber}</h4>
-                    <button onClick={() => DeleteCard(card.id)}>Delete</button>
+                    <button onClick={() => deleteCard(card.id)}>Delete</button>
                 </div>
             ))}
         </div>
