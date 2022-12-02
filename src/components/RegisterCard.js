@@ -6,19 +6,19 @@ const validate = (email, firstName, lastName, phoneNumber, title) => {
     const errors = []
 
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-        errors.push('Invalid email address');
+        errors.push('Invalid email address,\n');
     }
 
     if (!/^[a-zA-ZæÆøØåÅ]+$/i.test(firstName) || !/^[a-zA-ZæÆøØåÅ]+$/i.test(lastName)) {
-        errors.push('Name can only contain letters');
+        errors.push('Name can only contain letters,\n');
     }
 
     if (!/^(\+45)?[0-9]{8}$/i.test(phoneNumber)) {
-        errors.push('Phone number must contain 8 digits');
+        errors.push('Phone number must contain 8 digits,\n');
     }
 
     if (!/^[^0-9]+$/i.test(title)) {
-        errors.push('Title cannot contain digits');
+        errors.push('Title cannot contain digits,\n');
     }
 
     return errors
@@ -85,48 +85,48 @@ function RegisterCard() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <fieldset>
+            <div className='box'>
                 <label>
-                    <p>First Name</p>
-                    <input type="text" name="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
+                    <p>Full Name</p>
+                    <input type="text" name="firstName" value={firstName} placeholder="First Name" onChange={(e) => setFirstName(e.target.value)} required />
+                    <input type="text" name="lastName" value={lastName} placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} required />
                 </label>
                 <label>
-                    <p>Last Name</p>
-                    <input type="text" name="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
-                </label>
-                <label>
-                    <p>Email</p>
-                    <input type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                </label>
-                <label>
-                    <p>Phone Number</p>
+                    <p>Contact</p>
+                    <input type="text" name="email" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
                     <input type="text" name="phoneNumber" value={phoneNumber} placeholder="+45 xx xx xx xx" onChange={(e) => setPhoneNumber(e.target.value)} required />
                 </label>
                 <label>
                     <p>Address</p>
                     <input type="text" name="street" value={street} placeholder="Street" onChange={(e) => setStreet(e.target.value)} required />
                     <input type="text" name="number" value={number} placeholder="Number" onChange={(e) => setNumber(e.target.value)} required />
+                    <br />
                     <input type="text" name="city" value={city} placeholder="City" onChange={(e) => setCity(e.target.value)} required />
                     <input type="text" name="code" value={code} placeholder="Code" onChange={(e) => setCode(e.target.value)} required />
                 </label>
-                <label>
-                    <p>Color</p>
-                    <div className="sketchpicker">
-                        <SketchPicker
-                            color={color}
-                            onChange={(color) => {
-                                setColor(color.hex);
-                            }}
-                        />
-                    </div>
-                </label>
-                <label>
-                    <p>Title</p>
-                    <input type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
-                </label>
-            </fieldset>
-            <button type="submit">Submit</button>
-            <div className="message">{message ? <p>{message}</p> : null}</div>
+                <div className='colorAndTitle'>
+                    <label>
+                        <p>Title</p>
+                        <input type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                    </label>
+                    <label>
+                        <p>Color</p>
+                        <div className="sketchpicker">
+                            <SketchPicker
+                                color={color}
+                                onChange={(color) => {
+                                    setColor(color.hex);
+                                }}
+                            />
+                        </div>
+                    </label>
+                </div>
+                <div className='colorAndTitle'>
+                    <button type="submit">Submit</button>
+                    <div className="message">{message ? <p>{message}</p> : null}</div>
+                </div>
+            </div>
+
         </form>
     )
 }

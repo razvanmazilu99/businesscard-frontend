@@ -5,10 +5,14 @@ import RegisterCard from './components/RegisterCard';
 
 function App() {
   return (
-    <div className="wrapper">
-      <h1>Business Card</h1>
-      <RegisterCard />
-      <GetCards />
+    <div>
+      <div className='imageBlock'>
+        <img src='/Title.png' alt='Title' className='image' />
+      </div>
+      <div className='app'>
+        <RegisterCard />
+        <GetCards />
+      </div>
     </div>
   );
 }
